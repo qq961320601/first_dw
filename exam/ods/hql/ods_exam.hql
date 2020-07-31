@@ -1,6 +1,119 @@
 -- 创建销售订单主题的ods层
 CREATE DATABASE IF NOT EXISTS `ods_exam`;
 
+
+CREATE TABLE `category` (
+  `id` int,
+  `name` string COMMENT '分类名',
+  `outline_json` string COMMENT '大纲json',
+  `subject_id` int COMMENT '学科id',
+  `subject_name` string COMMENT '学科名',
+  `remark` string COMMENT '备注',
+  `del` int COMMENT '0:删除  1正常',
+  `modifier_id` int COMMENT '更新人id',
+  `modifier_name` string COMMENT '更新人姓名',
+  `modify_time` string COMMENT '更新时间',
+  `creator_id` int COMMENT '创建人id',
+  `creator_name` string COMMENT '创建人姓名',
+  `create_time` string COMMENT '创建时间'
+) COMMENT '分类表(小题库)'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS textfile
+;
+
+CREATE TABLE `question_type` (
+  `id` int,
+  `type` int COMMENT '1:单选题\r\n2:多选题\r\n3, 判断\r\n4:填空题\r\n5:简答题\r\n6:编程',
+  `name` string COMMENT '试题类型名',
+  `is_objective` int COMMENT '0:主观 1:客观'
+) COMMENT '试题类型表'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS textfile
+;
+
+
+CREATE TABLE `question_difficulty` (
+  `id` int,
+  `difficulty` int COMMENT '1:简单\r\n2:一般\r\n3:困难\r\n',
+  `name` string COMMENT '试题难度名'
+) COMMENT '难易度表'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS textfile
+;
+
+
+CREATE TABLE `question` (
+  `id` int,
+  `category_id` int COMMENT '分类id',
+  `question_type_id` int COMMENT '试题类型',
+  `question_difficulty_id` int COMMENT '试题难度',
+  `state` int COMMENT '试题状态\r\n1:启用\r\n2:禁用\r\n',
+  `content` string COMMENT '题干',
+  `right_answer` string COMMENT '正确答案',
+  `analyse` string COMMENT '正确答案解析',
+  `del` int COMMENT '0:删除 1:正常',
+  `modifier_id` int COMMENT '更新人id',
+  `modifier_name` string COMMENT '更新人 姓名',
+  `modify_time` string COMMENT '更新时间',
+  `creator_id` int COMMENT '创建人id',
+  `creator_name` string COMMENT '创建人姓名',
+  `create_time` string COMMENT '创建时间'
+) COMMENT='试题表'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS textfile
+;
+
+
+
+CREATE TABLE `question_option` (
+  `id` int,
+  `content` string COMMENT '选项题干',
+  `sort` int COMMENT '试题排序(1,2,3…)',
+  `question_id` int COMMENT '试题id',
+  `is_right` int COMMENT '0:错误\r\n1:正确\r\n'
+) COMMENT='试题选项表'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS textfile
+;
+
+
+CREATE TABLE `paper_template` (
+  `id` int,
+  `name` COMMENT '试卷模板名称',
+  `subject_id` int COMMENT '学科id',
+  `subject_name` string COMMENT '学科名',
+  `state` int COMMENT '0: 未发布\r\n1: 发布',
+  `total_mark` int COMMENT '  总分数',
+  `del` int COMMENT '0:删除 1:正常',
+  `modifier_id` int,
+  `modifier_name` string,
+  `modify_time` string,
+  `creator_id` int COMMENT '创建人id',
+  `creator_name` string,
+  `create_time` string COMMENT '创建时间'
+) COMMENT='试题模板(规则)表'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS textfile
+;
+
+
+CREATE TABLE `paper_template_category_ref` (
+  `id` int COMMENT '主键ID',
+  `paper_template_id` int COMMENT '试卷模板id',
+  `category_id` int COMMENT '分类id'
+) COMMENT='试卷模板--分类--关联表'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS textfile
+;
+
+
 --试卷模板题型组成
 CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper_template_part` (
   `id` int,
