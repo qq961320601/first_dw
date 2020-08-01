@@ -1,8 +1,8 @@
 -- 创建销售订单主题的ods层
 CREATE DATABASE IF NOT EXISTS `ods_exam`;
 
-
-CREATE TABLE `category` (
+-- 分类表
+CREATE TABLE `ods_exam`.`ods_category` (
   `id` int,
   `name` string COMMENT '分类名',
   `outline_json` string COMMENT '大纲json',
@@ -22,7 +22,8 @@ FIELDS TERMINATED BY ','
 STORED AS textfile
 ;
 
-CREATE TABLE `question_type` (
+-- 试题类型
+CREATE TABLE `ods_exam`.`ods_question_type` (
   `id` int,
   `type` int COMMENT '1:单选题\r\n2:多选题\r\n3, 判断\r\n4:填空题\r\n5:简答题\r\n6:编程',
   `name` string COMMENT '试题类型名',
@@ -33,8 +34,8 @@ FIELDS TERMINATED BY ','
 STORED AS textfile
 ;
 
-
-CREATE TABLE `question_difficulty` (
+-- 试题难度
+CREATE TABLE `ods_exam`.`ods_question_difficulty` (
   `id` int,
   `difficulty` int COMMENT '1:简单\r\n2:一般\r\n3:困难\r\n',
   `name` string COMMENT '试题难度名'
@@ -44,8 +45,8 @@ FIELDS TERMINATED BY ','
 STORED AS textfile
 ;
 
-
-CREATE TABLE `question` (
+-- 试题
+CREATE TABLE `ods_exam`.`ods_question` (
   `id` int,
   `category_id` int COMMENT '分类id',
   `question_type_id` int COMMENT '试题类型',
@@ -61,30 +62,29 @@ CREATE TABLE `question` (
   `creator_id` int COMMENT '创建人id',
   `creator_name` string COMMENT '创建人姓名',
   `create_time` string COMMENT '创建时间'
-) COMMENT='试题表'
+) COMMENT '试题表'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS textfile
 ;
 
-
-
-CREATE TABLE `question_option` (
+-- 试题选项
+CREATE TABLE `ods_exam`.`ods_question_option` (
   `id` int,
   `content` string COMMENT '选项题干',
   `sort` int COMMENT '试题排序(1,2,3…)',
   `question_id` int COMMENT '试题id',
   `is_right` int COMMENT '0:错误\r\n1:正确\r\n'
-) COMMENT='试题选项表'
+) COMMENT '试题选项表'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS textfile
 ;
 
-
-CREATE TABLE `paper_template` (
+-- 试卷模板
+CREATE TABLE `ods_exam`.`ods_paper_template` (
   `id` int,
-  `name` COMMENT '试卷模板名称',
+  `name` string COMMENT '试卷模板名称',
   `subject_id` int COMMENT '学科id',
   `subject_name` string COMMENT '学科名',
   `state` int COMMENT '0: 未发布\r\n1: 发布',
@@ -96,23 +96,22 @@ CREATE TABLE `paper_template` (
   `creator_id` int COMMENT '创建人id',
   `creator_name` string,
   `create_time` string COMMENT '创建时间'
-) COMMENT='试题模板(规则)表'
+) COMMENT '试题模板(规则)表'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS textfile
 ;
 
-
-CREATE TABLE `paper_template_category_ref` (
+-- 试卷模板与分类关联表
+CREATE TABLE `ods_exam`.`ods_paper_template_category_ref` (
   `id` int COMMENT '主键ID',
   `paper_template_id` int COMMENT '试卷模板id',
   `category_id` int COMMENT '分类id'
-) COMMENT='试卷模板--分类--关联表'
+) COMMENT '试卷模板--分类--关联表'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS textfile
 ;
-
 
 --试卷模板题型组成
 CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper_template_part` (
@@ -128,7 +127,7 @@ FIELDS TERMINATED BY ','
 ;
 
 --试卷模板题型组成各难度题数
-CREATE TABLE IF NOT EXISTS `ods_exam`.`paper_template_part_question_number` (
+CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper_template_part_question_number` (
   `id` int ,
   `paper_template_part_id` int  COMMENT '试卷模板组成id',
   `question_difficulty_id` int  COMMENT '难度id',
@@ -139,7 +138,7 @@ FIELDS TERMINATED BY ','
 ;
 
 --考试
-CREATE TABLE IF NOT EXISTS `ods_exam`.`exam` (
+CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_exam` (
   `id` int ,
   `name` string COMMENT '考试名',
   `paper_template_id` int COMMENT '试卷模板id',
@@ -165,9 +164,8 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 ;
 
-
 --考试与班级关联表
-CREATE TABLE IF NOT EXISTS `ods_exam`.`exam_class_ref` (
+CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_exam_class_ref` (
   `id` int  COMMENT '主键ID',
   `exam_id` int COMMENT '考试id',
   `class_id` int COMMENT '班级id',
@@ -177,9 +175,8 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 ;
 
-
 --试卷表
-CREATE TABLE IF NOT EXISTS `ods_exam`.`paper` (
+CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper` (
   `id` int ,
   `exam_id` int  COMMENT '考试id',
   `is_objective` int  COMMENT '是否全为客观题\r\n0:不是全客,含主\r\n1:全客\r\n',
@@ -193,7 +190,7 @@ FIELDS TERMINATED BY ','
 ;
 
 --试卷试题
-CREATE TABLE IF NOT EXISTS `ods_exam`.`paper_question` (
+CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper_question` (
   `id` int ,
   `paper_id` int COMMENT '试卷id',
   `question_id` int COMMENT '试题id'
@@ -202,9 +199,8 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 ;
 
-
 --答卷
-CREATE TABLE IF NOT EXISTS `ods_exam`.`answer_paper` (
+CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_answer_paper` (
   `id` int  COMMENT '主键ID',
   `exam_id` int COMMENT '考试ID',
   `paper_id` int COMMENT '试卷id',

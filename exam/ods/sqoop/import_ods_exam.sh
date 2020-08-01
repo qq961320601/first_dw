@@ -1,6 +1,9 @@
+#!/bin/bash
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+SQOOP_HOME=/opt/apps/sqoop
+
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table category \
@@ -13,8 +16,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table question_type \
@@ -27,8 +30,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table question_difficulty \
@@ -41,8 +44,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table question \
@@ -55,8 +58,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table question_option \
@@ -69,8 +72,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table paper_template \
@@ -83,8 +86,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table paper_template_category_ref \
@@ -97,8 +100,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table paper_template_part \
@@ -111,8 +114,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table paper_template_part_question_number \
@@ -125,8 +128,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table exam \
@@ -139,8 +142,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table exam_class_ref \
@@ -153,8 +156,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table paper \
@@ -167,8 +170,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table paper_question \
@@ -181,8 +184,8 @@ sqoop import \
 --as-textfile
 
 
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop import \
+--connect jdbc:mysql://phone01:3306/qianfeng \
 --username root \
 --password 123456 \
 --table answer_paper \
