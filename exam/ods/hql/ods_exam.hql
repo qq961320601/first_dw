@@ -18,7 +18,7 @@ CREATE TABLE `ods_exam`.`ods_category` (
   `create_time` string COMMENT '创建时间'
 ) COMMENT '分类表(小题库)'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 STORED AS textfile
 ;
 
@@ -30,7 +30,7 @@ CREATE TABLE `ods_exam`.`ods_question_type` (
   `is_objective` int COMMENT '0:主观 1:客观'
 ) COMMENT '试题类型表'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 STORED AS textfile
 ;
 
@@ -41,7 +41,7 @@ CREATE TABLE `ods_exam`.`ods_question_difficulty` (
   `name` string COMMENT '试题难度名'
 ) COMMENT '难易度表'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 STORED AS textfile
 ;
 
@@ -64,7 +64,7 @@ CREATE TABLE `ods_exam`.`ods_question` (
   `create_time` string COMMENT '创建时间'
 ) COMMENT '试题表'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 STORED AS textfile
 ;
 
@@ -77,7 +77,7 @@ CREATE TABLE `ods_exam`.`ods_question_option` (
   `is_right` int COMMENT '0:错误\r\n1:正确\r\n'
 ) COMMENT '试题选项表'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 STORED AS textfile
 ;
 
@@ -98,7 +98,7 @@ CREATE TABLE `ods_exam`.`ods_paper_template` (
   `create_time` string COMMENT '创建时间'
 ) COMMENT '试题模板(规则)表'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 STORED AS textfile
 ;
 
@@ -109,7 +109,7 @@ CREATE TABLE `ods_exam`.`ods_paper_template_category_ref` (
   `category_id` int COMMENT '分类id'
 ) COMMENT '试卷模板--分类--关联表'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 STORED AS textfile
 ;
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper_template_part` (
   `selected` int  COMMENT '0:未被选择\r\n1:已选择\r\n'
 )
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 ;
 
 --试卷模板题型组成各难度题数
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper_template_part_question_number` 
   `question_number` int  COMMENT '试题数量'
 )
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 ;
 
 --考试
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_exam` (
   `publish` int COMMENT '0: 学生不可查看 1:学生可查看'
 ) 
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 ;
 
 --考试与班级关联表
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_exam_class_ref` (
   `class_name` string COMMENT '班级名称'
 ) 
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 ;
 
 --试卷表
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper` (
   `create_time` string 
 ) 
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 ;
 
 --试卷试题
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_paper_question` (
   `question_id` int COMMENT '试题id'
 ) 
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 ;
 
 --答卷
@@ -224,5 +224,5 @@ CREATE TABLE IF NOT EXISTS `ods_exam`.`ods_answer_paper` (
   `evaluation_opinions` string COMMENT '评价意见'
 ) 
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED BY '\001'
 ;
