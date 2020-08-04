@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `dm_exam`.`dm_single_exam_correct` (
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\001'
-STORED AS orc;
+STORED AS textfile;
 
 
 insert overwrite table `dm_exam`.`dm_single_exam_correct` 
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `dm_exam`.`dm_single_exam_difficulty` (
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\001'
-STORED AS orc;
+STORED AS textfile;
 
 
 insert overwrite table `dm_exam`.`dm_single_exam_difficulty` 
