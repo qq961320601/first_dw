@@ -1,181 +1,40 @@
---1
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_category \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
+SQOOP_HOME=/opt/apps/sqoop-1.4.6-cdh5.7.6
 
---2
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop export \
+--connect jdbc:mysql://qphone02:3306/dm_exam \
 --username root \
 --password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_question_type \
---delete-target-dir \
+--table dm_exam_objective_fluctuation \
 --num-mappers 1 \
---hive-overwrite \
---as-textfile
+--export-dir /user/root/warehouse/dm_exam.db/dm_exam_objective_fluctuation \
+--fields-terminated-by '\001' 
 
---3
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_question_difficulty \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
 
---4
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop export \
+--connect jdbc:mysql://qphone02:3306/dm_exam \
 --username root \
 --password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_question \
---delete-target-dir \
+--table dm_single_exam_correct \
 --num-mappers 1 \
---hive-overwrite \
---as-textfile
+--export-dir /user/root/warehouse/dm_exam.db/dm_single_exam_correct \
+--fields-terminated-by '\001'
 
---5
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_question_option \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
 
---6
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop export \
+--connect jdbc:mysql://qphone02:3306/dm_exam \
 --username root \
 --password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_paper_template \
---delete-target-dir \
+--table dm_single_exam_difficulty \
 --num-mappers 1 \
---hive-overwrite \
---as-textfile
+--export-dir /user/root/warehouse/dm_exam.db/dm_single_exam_difficulty \
+--fields-terminated-by '\001'
 
---7
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_paper_template_category_ref \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
 
---8
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
+$SQOOP_HOME/bin/sqoop export \
+--connect jdbc:mysql://qphone02:3306/dm_exam \
 --username root \
 --password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_paper_template_part \
---delete-target-dir \
+--table dm_user_modle \
 --num-mappers 1 \
---hive-overwrite \
---as-textfile
-
---9
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_paper_template_part_question_number \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
-
---10
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_exam \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
-
---11
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_exam_class_ref \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
-
---12
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_paper \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
-
---13
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_paper_question \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
-
---14
-sqoop import \
---connect jdbc:mysql://qphone02:3306/qianfeng \
---username root \
---password 123456 \
---table customer \
---hive-import \
---hive-table ods_exam.ods_answer_paper \
---delete-target-dir \
---num-mappers 1 \
---hive-overwrite \
---as-textfile
+--export-dir /user/root/warehouse/dm_exam.db/dm_user_modle \
+--fields-terminated-by '\001'
